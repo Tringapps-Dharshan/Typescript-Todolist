@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className='display-center'>
       <AddTask/>
     </div>
   );

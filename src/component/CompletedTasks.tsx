@@ -1,4 +1,5 @@
 type Task = {
+    id: string,
     name: string,
     checked: boolean,
     edit: boolean
@@ -20,7 +21,7 @@ function CompletedTasks({tasks}:SetTask) {
     });
   return (
     <div>
-        <p className='completed-tasks'>Done : {count}</p>
+        <p className='completed-tasks'>DONE : {count}</p>
     </div>
   )
 }

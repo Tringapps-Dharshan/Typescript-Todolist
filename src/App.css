@@ -1,33 +1,45 @@
-.homepage{
-  padding: 50px;
+.display-center {
+  text-align: center;
 }
 
-.add-task{
+.header-text {
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+.add-task {
   display: flex;
   justify-content: center;
-  background-color: aliceblue;
+}
+
+.display-tasks {
+  font-size: 18px;
+  background-color: whitesmoke;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px rgb(189, 191, 193);
+}
+
+.display-task {
+  border-top: 2px solid lightgrey;
+  border-bottom: 2px solid lightgrey;
+  text-align: center;
   padding: 15px;
-  margin: 5px;
+  border-width: 0.7px;
+  max-width: 600px;
+  margin-left: 370px;
+}
+
+.completed-tasks {
+  font-weight: bold;
+  font-size: large;
 }
 
 .strikeout{
   text-decoration: line-through;
+  color: gray;
 }
 
-.display-tasks{
-  background-color: aliceblue;
-  align-items: center;
-  padding: 10px;
-  margin:5px;
-}
-
-.completed-tasks{
-  text-align: center;
-  color: whitesmoke;
-  font-size: large;
-}
-
-.header{
-  color: aliceblue;
-  text-align: center;
+.tasks,.strikeout{
+  padding: 10px 0;
 }

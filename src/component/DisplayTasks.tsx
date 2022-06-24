@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import '../App.css'
-import { Typography, Checkbox, IconButton, TextField, Grid } from '@mui/material';
+import { Grid, Checkbox, IconButton, TextField } from '@mui/material';
 import { red, blue, grey } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 
 type Task = {
+    id: string,
     name: string,
     checked: boolean,
     edit: boolean
@@ -58,51 +59,54 @@ function DisplayTasks({ tasks, setTasks }: SetTask) {
             {
                 Data.map((task) => {
                     return (
-                        <Grid container key={task.name} className="display-tasks">
-                            <Grid item xs={0.3} sx={{ textAlign: 'left' }}>
+                        <div className='display-tasks' key={task.id}>
+                            <Grid container sx={{alignItems:'center'}}>
+                                <Grid item xs={1}>
                                 <Checkbox
-                                    onChange={() => handleChange(task)}
-                                    color="success"
-                                    disabled={task.edit && true}
-                                />
-                            </Grid>
-                            <Grid item xs={11} sx={{ textAlign: 'left' }}>
-                                <Typography
-                                    className={task.checked ? "strikeout" : ""}
-                                    variant="h6" key={task.name}
-                                    sx={{ padding: '0 10px' }}
-                                >
-                                    {!task.edit && task.name}
-                                    {task.edit && editText()}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={0.3} sx={{ display: 'flex', justifyContent: "end" }}>
-                                {!task.edit && <IconButton
-                                    sx={{ display: 'flex' }}
-                                    disabled={task.checked && true}
-                                    onClick={() => edittasks(task)}
-                                >
-                                    <EditIcon sx={{ color: !task.checked ? blue[900] : grey[400] }} />
-                                </IconButton>}
-                                {
-                                    task.edit && <IconButton
-                                        onClick={() => saveNewTask(task)}
+                                        size='small'
+                                        onChange={() => handleChange(task)}
+                                        disabled={task.edit && true}
+                                    />
+                                </Grid>
+                                    <Grid item xs={9} sx={{ textAlign: 'left',display:'flex' }}>
+                                    <div
+                                        className={task.checked ? "strikeout" : "tasks"}
+                                        key={task.name}
                                     >
-                                        <DoneIcon
-                                            color="success"
+                                        {!task.edit && task.name}
+                                        {task.edit && editText()}
+                                    </div>
+                                </Grid>
+                                <Grid item xs={1}>
+                                    {!task.edit && <IconButton
+                                        sx={{ display: 'flex' }}
+                                        disabled={task.checked && true}
+                                        onClick={() => edittasks(task)}
+                                    >
+                                        <EditIcon sx={{ color: !task.checked ? blue[500] : grey[400] }} />
+                                    </IconButton>}
+                                    {
+                                        task.edit && <IconButton
+                                            onClick={() => saveNewTask(task)}
+                                        >
+                                            <DoneIcon
+                                                color="success"
+                                            />
+                                        </IconButton>
+                                    }
+                                </Grid>
+                                <Grid item xs={1}>
+                                <IconButton
+                                        sx={{ display: 'flex' }}
+                                        disabled={task.checked || task.edit}
+                                        onClick={() => deleteTasks(task.name)}
+                                    >
+                                        <DeleteIcon sx={{ color: !task.checked ? !task.edit ? red[500] : grey[400] : grey[400] }}
                                         />
                                     </IconButton>
-                                }
-                                <IconButton
-                                    sx={{ display: 'flex' }}
-                                    disabled={task.checked || task.edit}
-                                    onClick={() => deleteTasks(task.name)}
-                                >
-                                    <DeleteIcon sx={{ color: !task.checked ? !task.edit ? red[900] : grey[400] : grey[400] }}
-                                    />
-                                </IconButton>
+                                </Grid>
                             </Grid>
-                        </Grid>
+                        </div>
                     )
                 })
             }
